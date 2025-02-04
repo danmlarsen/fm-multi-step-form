@@ -28,8 +28,8 @@
   --color-pastel-blue: hsl(228, 100%, 84%);
   --color-light-blue: hsl(206, 94%, 87%);
   --color-strawberry-red: hsl(354, 84%, 57%);
-  --color-gray-cool: hsl(231, 11%, 63%);
-  --color-gray-light: hsl(229, 24%, 87%);
+  --color-grey-cool: hsl(231, 11%, 63%);
+  --color-grey-light: hsl(229, 24%, 87%);
   --color-magnolia: hsl(217, 100%, 97%);
   --color-alabaster: hsl(231, 100%, 99%);
 }
