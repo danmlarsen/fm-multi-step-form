@@ -24,13 +24,15 @@ type TFormState = {
 };
 
 type TFormContext = TFormState & {
+  handleSetStep: (step: number) => void;
   handleNextStep: () => void;
   handlePrevStep: () => void;
-  handleUpdatePersonalInfo: (data: TPersonalInfo) => void;
-  handleUpdatePickAddons: (data: TSelectedAddons) => void;
+  handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
+  handleUpdatePickAddons: (payload: TSelectedAddons) => void;
 };
 
 type TActions =
+  | { type: "SET_STEP"; payload: number }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
@@ -55,6 +57,8 @@ const initialFormState = {
 
 function reducer(state: TFormState, action: TActions) {
   switch (action.type) {
+    case "SET_STEP":
+      return { ...state, currentStep: action.payload };
     case "NEXT_STEP":
       return { ...state, currentStep: state.currentStep + 1 };
     case "PREV_STEP":
@@ -92,6 +96,10 @@ export function FormContextProvider({
 }) {
   const [state, dispatch] = useReducer(reducer, initialFormState);
 
+  function handleSetStep(payload: number) {
+    dispatch({ type: "SET_STEP", payload });
+  }
+
   function handleNextStep() {
     dispatch({ type: "NEXT_STEP" });
   }
@@ -112,6 +120,7 @@ export function FormContextProvider({
     <FormContext.Provider
       value={{
         ...state,
+        handleSetStep,
         handleNextStep,
         handlePrevStep,
         handleUpdatePersonalInfo,
