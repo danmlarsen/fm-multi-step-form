@@ -1,8 +1,13 @@
+import { useMultiStepForm } from "../context/FormContext";
 import MultiStepFormNavigation from "./MultiStepFormNavigation";
 import FormSteps from "./MultiStepFormSteps";
 import Card from "./ui/Card";
 
 export default function MultiStepForm() {
+  const formSteps = [<PersonalInfo />, <PlanSelect />];
+
+  const { currentStep } = useMultiStepForm();
+
   return (
     <>
       <div className="relative grid min-h-screen grid-rows-[1fr_auto] pt-8 md:hidden">
@@ -14,11 +19,11 @@ export default function MultiStepForm() {
             <FormSteps />
           </div>
           <div className="px-4">
-            <Card className="h-[400px]">Current form</Card>
+            <Card className="h-[400px]">{formSteps[currentStep]}</Card>
           </div>
         </div>
         <div className="bg-white">
-          <MultiStepFormNavigation />
+          <MultiStepFormNavigation lastStep={3} />
         </div>
       </div>
 
@@ -27,4 +32,11 @@ export default function MultiStepForm() {
       </div>
     </>
   );
+}
+
+function PersonalInfo() {
+  return <div>Personal info</div>;
+}
+function PlanSelect() {
+  return <div>Plan select</div>;
 }

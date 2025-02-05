@@ -7,7 +7,6 @@ type TProps = React.ComponentProps<"button"> & {
 };
 
 export default function Button({
-  children,
   className,
   variant = "default",
   ...props
@@ -26,8 +25,6 @@ export default function Button({
         className,
       )}
       {...props}
-    >
-      {children}
-    </button>
+    />
   );
 }

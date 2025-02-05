@@ -1,9 +1,12 @@
 import MultiStepForm from "./components/MultiStepForm";
+import { FormContextProvider } from "./context/FormContext";
 
 function App() {
   return (
     <div className="font-display bg-magnolia min-h-screen">
-      <MultiStepForm />
+      <FormContextProvider>
+        <MultiStepForm />
+      </FormContextProvider>
     </div>
   );
 }
