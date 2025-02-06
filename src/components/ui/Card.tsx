@@ -6,7 +6,7 @@ export default function Card({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      className={twMerge("rounded-[10px] bg-white px-6 py-8", className)}
+      className={twMerge("w-full rounded-[10px] bg-white px-6 py-8", className)}
       {...props}
     />
   );

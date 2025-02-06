@@ -1,10 +1,17 @@
+import { twMerge } from "tailwind-merge";
 import { useMultiStepForm } from "../context/FormContext";
 
-export default function FormSteps() {
+export default function FormSteps({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   const { currentStep, handleSetStep } = useMultiStepForm();
 
   return (
-    <div className="flex gap-4 text-white">
+    <div
+      className={twMerge("flex gap-4 text-white md:flex-col", className)}
+      {...props}
+    >
       <FormStep
         stepNum={1}
         isActive={currentStep === 0}
@@ -47,15 +54,18 @@ export function FormStep({
   isActive?: boolean;
 }) {
   return (
-    <button onClick={onClick}>
+    <button
+      className="cursor-pointer md:flex md:items-center md:gap-4"
+      onClick={onClick}
+    >
       <div
         className={`grid size-[33px] place-items-center rounded-full font-bold ${isActive ? "bg-light-blue text-marine-blue" : "bg-blue border border-white"}`}
       >
         {stepNum}
       </div>
-      <div className="hidden md:block">
-        <div></div>
-        <div>{children}</div>
+      <div className="hidden text-left uppercase md:block">
+        <div className="text-light-blue text-xs">Step {stepNum}</div>
+        <div className="text-sm">{children}</div>
       </div>
     </button>
   );
