@@ -1,10 +1,15 @@
 import { useMultiStepForm } from "../context/FormContext";
 import MultiStepFormNavigation from "./MultiStepFormNavigation";
 import FormSteps from "./MultiStepFormSteps";
+import MultiStepFormSummary from "./MultiStepFormSummary";
 import Card from "./ui/Card";
 
 export default function MultiStepForm() {
-  const formSteps = [<PersonalInfo />, <PlanSelect />];
+  const formSteps = [
+    <PersonalInfo />,
+    <PlanSelect />,
+    <MultiStepFormSummary />,
+  ];
 
   const { currentStep } = useMultiStepForm();
 
@@ -19,7 +24,7 @@ export default function MultiStepForm() {
             <FormSteps />
           </div>
           <div className="px-4">
-            <Card className="h-[400px]">{formSteps[currentStep]}</Card>
+            <Card>{formSteps[currentStep]}</Card>
           </div>
         </div>
         <div className="bg-white">

@@ -34,5 +34,12 @@ export function CardDescription({
   className,
   ...props
 }: React.ComponentProps<"small">) {
-  return <small className={twMerge("", className)} {...props} />;
+  return <small className={twMerge("text-grey-cool", className)} {...props} />;
+}
+
+export function CardContent({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return <div className={twMerge("pt-[22px]", className)} {...props} />;
 }

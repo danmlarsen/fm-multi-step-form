@@ -6,21 +6,16 @@ type TPersonalInfo = {
   phone: string;
 };
 
-type TSelectedAddons = {
-  onlineService: boolean;
-  largerStorage: boolean;
-  customProfile: boolean;
+type TFormData = TPersonalInfo & {
+  isYearly: boolean;
+  selectedPlan: number;
+  selectedAddons: number[];
 };
-
-type TFormData = TPersonalInfo &
-  TSelectedAddons & {
-    isYearly: boolean;
-    selectedPlan: number;
-  };
 
 type TFormState = {
   currentStep: number;
   formData: TFormData;
+  formConfirmed: boolean;
 };
 
 type TFormContext = TFormState & {
@@ -28,7 +23,7 @@ type TFormContext = TFormState & {
   handleNextStep: () => void;
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
-  handleUpdatePickAddons: (payload: TSelectedAddons) => void;
+  handleUpdatePickAddons: (payload: number[]) => void;
 };
 
 type TActions =
@@ -37,7 +32,7 @@ type TActions =
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
   | { type: "UPDATE_PLANS"; payload: number }
-  | { type: "UPDATE_ADDONS"; payload: TSelectedAddons };
+  | { type: "UPDATE_ADDONS"; payload: number[] };
 
 const FormContext = createContext<TFormContext | null>(null);
 
@@ -49,10 +44,9 @@ const initialFormState = {
     phone: "",
     isYearly: false,
     selectedPlan: 0,
-    onlineService: true,
-    largerStorage: true,
-    customProfile: false,
+    selectedAddons: [0, 1, 2],
   },
+  formConfirmed: false,
 };
 
 function reducer(state: TFormState, action: TActions) {
@@ -112,7 +106,7 @@ export function FormContextProvider({
     dispatch({ type: "UPDATE_PERSONAL_INFO", payload });
   }
 
-  function handleUpdatePickAddons(payload: TSelectedAddons) {
+  function handleUpdatePickAddons(payload: number[]) {
     dispatch({ type: "UPDATE_ADDONS", payload });
   }
 

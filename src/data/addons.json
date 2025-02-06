@@ -1,0 +1,22 @@
+{
+  "addons": [
+    {
+      "addonTitle": "Online service",
+      "desc": "Access to multiplayer games",
+      "monthly": 1,
+      "yearly": 10
+    },
+    {
+      "addonTitle": "Larger storage",
+      "desc": "Extra 1TB of cloud save",
+      "monthly": 2,
+      "yearly": 20
+    },
+    {
+      "addonTitle": "Customizable profile",
+      "desc": "Custom theme on your profile",
+      "monthly": 2,
+      "yearly": 20
+    }
+  ]
+}
