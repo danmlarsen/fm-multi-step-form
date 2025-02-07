@@ -25,43 +25,43 @@ export default function MultiStepFormSummary() {
   const priceTotal = planPriceTotal + addonsPriceTotal;
 
   return (
-    <>
+    <div className="w-full max-w-[450px]">
       <CardHeader>
         <CardTitle>Finishing up</CardTitle>
         <CardDescription>
           Double-check everything looks OK before confirming.
         </CardDescription>
-        <CardContent>
-          <div className="bg-magnolia rounded-lg px-6 py-4 text-sm">
-            <div className="flex items-center justify-between">
-              <div className="font-medium">
-                {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
-              </div>
-              <div className="font-bold">
-                {formatPrice(selectedPlanData, isYearly)}
-              </div>
-            </div>
-            <div className="border-grey-cool/20 mt-3 border-t pt-3">
-              {selectedAddons.map((addon) => (
-                <SummaryAddonItem
-                  key={addons[addon].addonTitle}
-                  addonIndex={addon}
-                  isYearly={isYearly}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="flex items-center justify-between px-6 pt-6">
-            <div className="text-grey-cool text-sm">
-              Total (per {isYearly ? "year" : "month"})
-            </div>
-            <div className="text-purplish-blue font-bold">
-              ${priceTotal}/{isYearly ? "yr" : "mo"}
-            </div>
-          </div>
-        </CardContent>
       </CardHeader>
-    </>
+      <CardContent>
+        <div className="bg-magnolia rounded-lg px-6 py-4 text-sm">
+          <div className="flex items-center justify-between">
+            <div className="font-medium">
+              {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
+            </div>
+            <div className="font-bold">
+              {formatPrice(selectedPlanData, isYearly)}
+            </div>
+          </div>
+          <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:space-y-4">
+            {selectedAddons.map((addon) => (
+              <SummaryAddonItem
+                key={addons[addon].addonTitle}
+                addonIndex={addon}
+                isYearly={isYearly}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center justify-between px-6 pt-6">
+          <div className="text-grey-cool text-sm">
+            Total (per {isYearly ? "year" : "month"})
+          </div>
+          <div className="text-purplish-blue font-bold">
+            ${priceTotal}/{isYearly ? "yr" : "mo"}
+          </div>
+        </div>
+      </CardContent>
+    </div>
   );
 }
 

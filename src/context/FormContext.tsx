@@ -24,6 +24,7 @@ type TFormContext = TFormState & {
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
   handleUpdatePickAddons: (payload: number[]) => void;
+  handleConfirmForm: () => void;
 };
 
 type TActions =
@@ -32,7 +33,8 @@ type TActions =
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
   | { type: "UPDATE_PLANS"; payload: number }
-  | { type: "UPDATE_ADDONS"; payload: number[] };
+  | { type: "UPDATE_ADDONS"; payload: number[] }
+  | { type: "CONFIRM" };
 
 const FormContext = createContext<TFormContext | null>(null);
 
@@ -52,11 +54,23 @@ const initialFormState = {
 function reducer(state: TFormState, action: TActions) {
   switch (action.type) {
     case "SET_STEP":
-      return { ...state, currentStep: action.payload };
+      return {
+        ...state,
+        formData: { ...state.formData },
+        currentStep: action.payload,
+      };
     case "NEXT_STEP":
-      return { ...state, currentStep: state.currentStep + 1 };
+      return {
+        ...state,
+        formData: { ...state.formData },
+        currentStep: state.currentStep + 1,
+      };
     case "PREV_STEP":
-      return { ...state, currentStep: state.currentStep - 1 };
+      return {
+        ...state,
+        formData: { ...state.formData },
+        currentStep: state.currentStep - 1,
+      };
     case "UPDATE_PERSONAL_INFO":
       return {
         ...state,
@@ -72,6 +86,8 @@ function reducer(state: TFormState, action: TActions) {
         ...state,
         formData: { ...state.formData, ...action.payload },
       };
+    case "CONFIRM":
+      return { ...state, formData: { ...state.formData }, formConfirmed: true };
     default:
       return state;
   }
@@ -110,6 +126,10 @@ export function FormContextProvider({
     dispatch({ type: "UPDATE_ADDONS", payload });
   }
 
+  function handleConfirmForm() {
+    dispatch({ type: "CONFIRM" });
+  }
+
   return (
     <FormContext.Provider
       value={{
@@ -119,6 +139,7 @@ export function FormContextProvider({
         handlePrevStep,
         handleUpdatePersonalInfo,
         handleUpdatePickAddons,
+        handleConfirmForm,
       }}
     >
       {children}

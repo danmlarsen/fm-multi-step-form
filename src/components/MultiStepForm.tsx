@@ -9,6 +9,7 @@ export default function MultiStepForm() {
   const formSteps = [
     <PersonalInfo />,
     <PlanSelect />,
+    <PlanSelect />,
     <MultiStepFormSummary />,
   ];
 
@@ -32,7 +33,7 @@ export default function MultiStepForm() {
           </div>
         </div>
         {!formConfirmed && (
-          <div className="bg-white">
+          <div className="bg-white p-4">
             <MultiStepFormNavigation lastStep={3} />
           </div>
         )}
@@ -43,9 +44,12 @@ export default function MultiStepForm() {
           <div className="w-[274px] rounded-[10px] bg-[url(/assets/images/bg-sidebar-desktop.svg)] bg-cover bg-no-repeat px-8 py-10">
             <FormSteps />
           </div>
-          <div className="grid place-items-center">
+          <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-8">
             {!formConfirmed && formSteps[currentStep]}
             {formConfirmed && <MultiStepFormConfirmed />}
+            <div className="w-full max-w-[450px]">
+              {!formConfirmed && <MultiStepFormNavigation lastStep={3} />}
+            </div>
           </div>
         </Card>
       </div>

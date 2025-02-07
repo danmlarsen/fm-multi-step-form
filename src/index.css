@@ -4,21 +4,21 @@
   font-family: "Ubuntu";
   src: url("./assets/fonts/Ubuntu-Regular.ttf");
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 @font-face {
   font-family: "Ubuntu";
   src: url("./assets/fonts/Ubuntu-Medium.ttf");
   font-style: normal;
-  font-weight: medium;
+  font-weight: 500;
 }
 
 @font-face {
   font-family: "Ubuntu";
   src: url("./assets/fonts/Ubuntu-Bold.ttf");
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 @theme {

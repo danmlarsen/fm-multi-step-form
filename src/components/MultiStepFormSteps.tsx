@@ -59,13 +59,13 @@ export function FormStep({
       onClick={onClick}
     >
       <div
-        className={`grid size-[33px] place-items-center rounded-full font-bold ${isActive ? "bg-light-blue text-marine-blue" : "bg-blue border border-white"}`}
+        className={`grid size-[33px] place-items-center rounded-full font-bold ${isActive ? "bg-pastel-blue text-marine-blue" : "bg-blue border border-white"}`}
       >
         {stepNum}
       </div>
       <div className="hidden text-left uppercase md:block">
         <div className="text-light-blue text-xs">Step {stepNum}</div>
-        <div className="text-sm">{children}</div>
+        <div className="text-sm font-bold">{children}</div>
       </div>
     </button>
   );
