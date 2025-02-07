@@ -1,4 +1,5 @@
 import { useMultiStepForm } from "../context/FormContext";
+import MultiStepFormConfirmed from "./MultiStepFormConfirmed";
 import MultiStepFormNavigation from "./MultiStepFormNavigation";
 import FormSteps from "./MultiStepFormSteps";
 import MultiStepFormSummary from "./MultiStepFormSummary";
@@ -11,7 +12,7 @@ export default function MultiStepForm() {
     <MultiStepFormSummary />,
   ];
 
-  const { currentStep } = useMultiStepForm();
+  const { currentStep, formConfirmed } = useMultiStepForm();
 
   return (
     <>
@@ -24,12 +25,17 @@ export default function MultiStepForm() {
             <FormSteps />
           </div>
           <div className="px-4">
-            <Card>{formSteps[currentStep]}</Card>
+            <Card>
+              {!formConfirmed && formSteps[currentStep]}
+              {formConfirmed && <MultiStepFormConfirmed />}
+            </Card>
           </div>
         </div>
-        <div className="bg-white">
-          <MultiStepFormNavigation lastStep={3} />
-        </div>
+        {!formConfirmed && (
+          <div className="bg-white">
+            <MultiStepFormNavigation lastStep={3} />
+          </div>
+        )}
       </div>
 
       <div className="hidden min-h-screen place-items-center px-6 md:grid">
@@ -38,7 +44,8 @@ export default function MultiStepForm() {
             <FormSteps />
           </div>
           <div className="grid place-items-center">
-            {formSteps[currentStep]}
+            {!formConfirmed && formSteps[currentStep]}
+            {formConfirmed && <MultiStepFormConfirmed />}
           </div>
         </Card>
       </div>

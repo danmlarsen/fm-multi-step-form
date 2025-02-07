@@ -20,7 +20,7 @@ export default function Button({
   return (
     <button
       className={twMerge(
-        "rounded-sm px-4 py-3 text-sm",
+        "cursor-pointer rounded-sm px-4 py-3 text-sm",
         variantClasses[variant],
         className,
       )}

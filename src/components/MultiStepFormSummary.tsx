@@ -43,12 +43,11 @@ export default function MultiStepFormSummary() {
             </div>
             <div className="border-grey-cool/20 mt-3 border-t pt-3">
               {selectedAddons.map((addon) => (
-                <div className="flex items-center justify-between">
-                  <div className="text-grey-cool">
-                    {addons[addon].addonTitle}
-                  </div>
-                  <div>+{formatPrice(addons[addon], isYearly)}</div>
-                </div>
+                <SummaryAddonItem
+                  key={addons[addon].addonTitle}
+                  addonIndex={addon}
+                  isYearly={isYearly}
+                />
               ))}
             </div>
           </div>
@@ -63,5 +62,20 @@ export default function MultiStepFormSummary() {
         </CardContent>
       </CardHeader>
     </>
+  );
+}
+
+function SummaryAddonItem({
+  addonIndex,
+  isYearly,
+}: {
+  addonIndex: number;
+  isYearly: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between">
+      <div className="text-grey-cool">{addons[addonIndex].addonTitle}</div>
+      <div>+{formatPrice(addons[addonIndex], isYearly)}</div>
+    </div>
   );
 }

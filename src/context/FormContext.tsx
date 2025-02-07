@@ -37,12 +37,12 @@ type TActions =
 const FormContext = createContext<TFormContext | null>(null);
 
 const initialFormState = {
-  currentStep: 0,
+  currentStep: 2,
   formData: {
     name: "",
     email: "",
     phone: "",
-    isYearly: false,
+    isYearly: true,
     selectedPlan: 0,
     selectedAddons: [0, 1, 2],
   },
