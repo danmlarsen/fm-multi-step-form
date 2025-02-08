@@ -2,16 +2,19 @@
   "plans": [
     {
       "planTitle": "Arcade",
+      "planIcon": "/assets/images/icon-arcade.svg",
       "monthly": 9,
       "yearly": 90
     },
     {
       "planTitle": "Advanced",
+      "planIcon": "/assets/images/icon-advanced.svg",
       "monthly": 12,
       "yearly": 120
     },
     {
       "planTitle": "Pro",
+      "planIcon": "/assets/images/icon-pro.svg",
       "monthly": 15,
       "yearly": 150
     }

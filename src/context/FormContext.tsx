@@ -23,6 +23,8 @@ type TFormContext = TFormState & {
   handleNextStep: () => void;
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
+  handleUpdatePlan: (payload: number) => void;
+  handleToggleIsYearly: () => void;
   handleUpdatePickAddons: (payload: number[]) => void;
   handleConfirmForm: () => void;
 };
@@ -34,6 +36,7 @@ type TActions =
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
   | { type: "UPDATE_PLANS"; payload: number }
   | { type: "UPDATE_ADDONS"; payload: number[] }
+  | { type: "TOGGLE_IS_YEARLY" }
   | { type: "CONFIRM" };
 
 const FormContext = createContext<TFormContext | null>(null);
@@ -86,6 +89,11 @@ function reducer(state: TFormState, action: TActions) {
         ...state,
         formData: { ...state.formData, ...action.payload },
       };
+    case "TOGGLE_IS_YEARLY":
+      return {
+        ...state,
+        formData: { ...state.formData, isYearly: !state.formData.isYearly },
+      };
     case "CONFIRM":
       return { ...state, formData: { ...state.formData }, formConfirmed: true };
     default:
@@ -122,6 +130,14 @@ export function FormContextProvider({
     dispatch({ type: "UPDATE_PERSONAL_INFO", payload });
   }
 
+  function handleUpdatePlan(payload: number) {
+    dispatch({ type: "UPDATE_PLANS", payload });
+  }
+
+  function handleToggleIsYearly() {
+    dispatch({ type: "TOGGLE_IS_YEARLY" });
+  }
+
   function handleUpdatePickAddons(payload: number[]) {
     dispatch({ type: "UPDATE_ADDONS", payload });
   }
@@ -138,6 +154,8 @@ export function FormContextProvider({
         handleNextStep,
         handlePrevStep,
         handleUpdatePersonalInfo,
+        handleUpdatePlan,
+        handleToggleIsYearly,
         handleUpdatePickAddons,
         handleConfirmForm,
       }}

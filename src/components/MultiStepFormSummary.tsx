@@ -2,13 +2,7 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
 import { addons } from "../data/addons.json";
 import { plans } from "../data/plans.json";
 import { useMultiStepForm } from "../context/FormContext";
-
-function formatPrice(
-  data: { yearly: number; monthly: number },
-  isYearly: boolean,
-) {
-  return `$${data[isYearly ? "yearly" : "monthly"]}/${isYearly ? "yr" : "mo"}`;
-}
+import { formatPrice } from "@/lib/utils";
 
 export default function MultiStepFormSummary() {
   const {

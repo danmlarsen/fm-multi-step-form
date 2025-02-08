@@ -1,15 +1,18 @@
 import { useMultiStepForm } from "../context/FormContext";
+import AddonForm from "./AddonForm";
 import MultiStepFormConfirmed from "./MultiStepFormConfirmed";
 import MultiStepFormNavigation from "./MultiStepFormNavigation";
 import FormSteps from "./MultiStepFormSteps";
 import MultiStepFormSummary from "./MultiStepFormSummary";
+import PersonalInfoForm from "./PersonalInfoForm";
+import PlanSelectForm from "./PlanSelectForm";
 import Card from "./ui/Card";
 
 export default function MultiStepForm() {
   const formSteps = [
-    <PersonalInfo />,
-    <PlanSelect />,
-    <PlanSelect />,
+    <PersonalInfoForm />,
+    <PlanSelectForm />,
+    <AddonForm />,
     <MultiStepFormSummary />,
   ];
 
@@ -55,11 +58,4 @@ export default function MultiStepForm() {
       </div>
     </>
   );
-}
-
-function PersonalInfo() {
-  return <div>Personal info</div>;
-}
-function PlanSelect() {
-  return <div>Plan select</div>;
 }

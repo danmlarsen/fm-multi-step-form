@@ -7,7 +7,7 @@ export default function Card({
   return (
     <div
       className={twMerge(
-        "flex w-full justify-center rounded-[10px] bg-white px-6 py-8",
+        "flex w-full flex-col justify-center rounded-[10px] bg-white px-6 py-8",
         className,
       )}
       {...props}
