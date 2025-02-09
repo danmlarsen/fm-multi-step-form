@@ -14,12 +14,14 @@ type TFormData = TPersonalInfo & {
 
 type TFormState = {
   currentStep: number;
+  currentStepIsValid: boolean;
   formData: TFormData;
   formConfirmed: boolean;
 };
 
 type TFormContext = TFormState & {
   handleSetStep: (step: number) => void;
+  handleSetStepIsValid: () => void;
   handleNextStep: () => void;
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
@@ -31,6 +33,7 @@ type TFormContext = TFormState & {
 
 type TActions =
   | { type: "SET_STEP"; payload: number }
+  | { type: "SET_STEP_IS_VALID" }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
@@ -43,6 +46,7 @@ const FormContext = createContext<TFormContext | null>(null);
 
 const initialFormState = {
   currentStep: 2,
+  currentStepIsValid: false,
   formData: {
     name: "",
     email: "",
@@ -62,7 +66,14 @@ function reducer(state: TFormState, action: TActions) {
         formData: { ...state.formData },
         currentStep: action.payload,
       };
+    case "SET_STEP_IS_VALID":
+      return {
+        ...state,
+        formData: { ...state.formData },
+        currentStepIsValid: true,
+      };
     case "NEXT_STEP":
+      if (!state.currentStepIsValid) return state;
       return {
         ...state,
         formData: { ...state.formData },
@@ -133,6 +144,10 @@ export function FormContextProvider({
     dispatch({ type: "PREV_STEP" });
   }
 
+  function handleSetStepIsValid() {
+    dispatch({ type: "SET_STEP_IS_VALID" });
+  }
+
   function handleUpdatePersonalInfo(payload: TPersonalInfo) {
     dispatch({ type: "UPDATE_PERSONAL_INFO", payload });
   }
@@ -160,6 +175,7 @@ export function FormContextProvider({
         handleSetStep,
         handleNextStep,
         handlePrevStep,
+        handleSetStepIsValid,
         handleUpdatePersonalInfo,
         handleUpdatePlan,
         handleToggleIsYearly,
