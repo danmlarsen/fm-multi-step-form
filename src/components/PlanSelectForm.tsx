@@ -31,10 +31,11 @@ function PlanSelect() {
 
   return (
     <div className="flex flex-col gap-3">
-      {plans.map((plan, idx) => (
+      {plans.map((plan) => (
         <PlanOption
-          className={`${selectedPlan === idx ? "bg-alabaster border-purplish-blue" : ""}`}
-          onClick={() => handleUpdatePlan(idx)}
+          key={plan.planTitle}
+          className={`${selectedPlan === plan.planTitle ? "bg-alabaster border-purplish-blue" : ""}`}
+          onClick={() => handleUpdatePlan(plan.planTitle)}
           plan={plan}
         />
       ))}

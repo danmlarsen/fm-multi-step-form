@@ -8,7 +8,7 @@ type TPersonalInfo = {
 
 type TFormData = TPersonalInfo & {
   isYearly: boolean;
-  selectedPlan: number;
+  selectedPlan: string;
   selectedAddons: number[];
 };
 
@@ -23,9 +23,9 @@ type TFormContext = TFormState & {
   handleNextStep: () => void;
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
-  handleUpdatePlan: (payload: number) => void;
+  handleUpdatePlan: (payload: string) => void;
   handleToggleIsYearly: () => void;
-  handleUpdatePickAddons: (payload: number[]) => void;
+  handleToggleAddon: (payload: number) => void;
   handleConfirmForm: () => void;
 };
 
@@ -34,8 +34,8 @@ type TActions =
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
-  | { type: "UPDATE_PLANS"; payload: number }
-  | { type: "UPDATE_ADDONS"; payload: number[] }
+  | { type: "UPDATE_PLANS"; payload: string }
+  | { type: "TOGGLE_ADDON"; payload: number }
   | { type: "TOGGLE_IS_YEARLY" }
   | { type: "CONFIRM" };
 
@@ -48,8 +48,8 @@ const initialFormState = {
     email: "",
     phone: "",
     isYearly: true,
-    selectedPlan: 0,
-    selectedAddons: [0, 1, 2],
+    selectedPlan: "Arcade",
+    selectedAddons: [0, 2],
   },
   formConfirmed: false,
 };
@@ -84,10 +84,17 @@ function reducer(state: TFormState, action: TActions) {
         ...state,
         formData: { ...state.formData, selectedPlan: action.payload },
       };
-    case "UPDATE_ADDONS":
+    case "TOGGLE_ADDON":
       return {
         ...state,
-        formData: { ...state.formData, ...action.payload },
+        formData: {
+          ...state.formData,
+          selectedAddons: state.formData.selectedAddons.includes(action.payload)
+            ? state.formData.selectedAddons.filter(
+                (id) => action.payload !== id,
+              )
+            : [...state.formData.selectedAddons, action.payload],
+        },
       };
     case "TOGGLE_IS_YEARLY":
       return {
@@ -130,7 +137,7 @@ export function FormContextProvider({
     dispatch({ type: "UPDATE_PERSONAL_INFO", payload });
   }
 
-  function handleUpdatePlan(payload: number) {
+  function handleUpdatePlan(payload: string) {
     dispatch({ type: "UPDATE_PLANS", payload });
   }
 
@@ -138,8 +145,8 @@ export function FormContextProvider({
     dispatch({ type: "TOGGLE_IS_YEARLY" });
   }
 
-  function handleUpdatePickAddons(payload: number[]) {
-    dispatch({ type: "UPDATE_ADDONS", payload });
+  function handleToggleAddon(payload: number) {
+    dispatch({ type: "TOGGLE_ADDON", payload });
   }
 
   function handleConfirmForm() {
@@ -156,7 +163,7 @@ export function FormContextProvider({
         handleUpdatePersonalInfo,
         handleUpdatePlan,
         handleToggleIsYearly,
-        handleUpdatePickAddons,
+        handleToggleAddon,
         handleConfirmForm,
       }}
     >

@@ -9,9 +9,15 @@ export default function MultiStepFormSummary() {
     formData: { selectedPlan, selectedAddons, isYearly },
   } = useMultiStepForm();
 
-  const selectedPlanData = plans[selectedPlan];
+  const selectedPlanData = plans.find(
+    (plan) => plan.planTitle === selectedPlan,
+  )!;
 
-  const planPriceTotal = plans[selectedPlan][isYearly ? "yearly" : "monthly"];
+  const selectedAddonsData = addons.filter((addon) =>
+    selectedAddons.includes(addon.id),
+  );
+
+  const planPriceTotal = selectedPlanData[isYearly ? "yearly" : "monthly"];
   const addonsPriceTotal = addons
     .filter((_, idx) => selectedAddons.includes(idx))
     .reduce((acc, val) => acc + val[isYearly ? "yearly" : "monthly"], 0);
@@ -37,10 +43,10 @@ export default function MultiStepFormSummary() {
             </div>
           </div>
           <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:space-y-4">
-            {selectedAddons.map((addon) => (
+            {selectedAddonsData.map((addon) => (
               <SummaryAddonItem
-                key={addons[addon].addonTitle}
-                addonIndex={addon}
+                key={addon.id}
+                addon={addon}
                 isYearly={isYearly}
               />
             ))}
@@ -60,16 +66,16 @@ export default function MultiStepFormSummary() {
 }
 
 function SummaryAddonItem({
-  addonIndex,
+  addon,
   isYearly,
 }: {
-  addonIndex: number;
+  addon: (typeof addons)[0];
   isYearly: boolean;
 }) {
   return (
     <div className="flex items-center justify-between">
-      <div className="text-grey-cool">{addons[addonIndex].addonTitle}</div>
-      <div>+{formatPrice(addons[addonIndex], isYearly)}</div>
+      <div className="text-grey-cool">{addon.addonTitle}</div>
+      <div>+{formatPrice(addon, isYearly)}</div>
     </div>
   );
 }
