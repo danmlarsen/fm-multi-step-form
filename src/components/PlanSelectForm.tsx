@@ -30,7 +30,7 @@ function PlanSelect() {
   } = useMultiStepForm();
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="grid min-h-[160px] gap-3 md:grid-cols-3 md:gap-[18px]">
       {plans.map((plan) => (
         <PlanOption
           key={plan.planTitle}
@@ -55,7 +55,7 @@ function PlanOption({
   return (
     <button
       className={twMerge(
-        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3",
+        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3 md:flex-col md:justify-between",
         className,
       )}
       {...props}
@@ -78,9 +78,17 @@ function IsYearlyToggle() {
 
   return (
     <div className="bg-alabaster flex justify-center gap-6 rounded-lg py-3 text-sm font-bold">
-      <span className="text-marine-blue">Monthly</span>
+      <span
+        className={`text-grey-cool ${isYearly ? "text-grey-cool" : "text-marine-blue"}`}
+      >
+        Monthly
+      </span>
       <Switch checked={isYearly} onCheckedChange={handleToggleIsYearly} />
-      <span className="text-grey-cool">Yearly</span>
+      <span
+        className={`text-grey-cool ${isYearly ? "text-marine-blue" : "text-grey-cool"}`}
+      >
+        Yearly
+      </span>
     </div>
   );
 }

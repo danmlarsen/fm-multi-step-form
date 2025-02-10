@@ -60,8 +60,8 @@ export default function MultiStepForm() {
           <div className="flex justify-center">
             <FormSteps />
           </div>
-          <div className="px-4">
-            <Card>
+          <div className="flex justify-center px-4">
+            <Card className="w-full max-w-[450px]">
               {!formConfirmed && (
                 <>
                   {currentStep === 0 && (
