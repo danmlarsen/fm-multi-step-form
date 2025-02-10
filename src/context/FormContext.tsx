@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 
 type TPersonalInfo = {
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
 };
@@ -48,7 +48,7 @@ const initialFormState = {
   currentStep: 2,
   currentStepIsValid: false,
   formData: {
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
     isYearly: true,
@@ -73,7 +73,6 @@ function reducer(state: TFormState, action: TActions) {
         currentStepIsValid: true,
       };
     case "NEXT_STEP":
-      if (!state.currentStepIsValid) return state;
       return {
         ...state,
         formData: { ...state.formData },

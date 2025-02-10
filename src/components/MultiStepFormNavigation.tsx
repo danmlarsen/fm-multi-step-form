@@ -5,9 +5,11 @@ type TProps = {
   lastStep: number;
 };
 
-export default function MultiStepFormNavigation({ lastStep }: TProps) {
-  const { currentStep, handleNextStep, handlePrevStep, handleConfirmForm } =
-    useMultiStepForm();
+export default function MultiStepFormNavigation({
+  lastStep,
+  onClickNext,
+}: TProps & { onClickNext: () => void }) {
+  const { currentStep, handlePrevStep, handleConfirmForm } = useMultiStepForm();
 
   return (
     <div className="flex justify-between">
@@ -21,7 +23,7 @@ export default function MultiStepFormNavigation({ lastStep }: TProps) {
 
       <div>
         {currentStep !== lastStep && (
-          <Button onClick={handleNextStep}>Next Step</Button>
+          <Button onClick={onClickNext}>Next Step</Button>
         )}
         {currentStep === lastStep && (
           <Button className="bg-purplish-blue" onClick={handleConfirmForm}>

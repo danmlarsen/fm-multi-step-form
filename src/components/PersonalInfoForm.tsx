@@ -1,6 +1,3 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -11,30 +8,16 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
-import { useMultiStepForm } from "@/context/FormContext";
 
-const personalInfoSchema = z.object({
-  fullName: z.string(),
-  email: z.string().email("Please enter a valid email"),
-  phone: z.string(),
-});
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
+import { personalInfoSchema } from "./MultiStepForm";
 
-export default function PersonalInfoForm() {
-  const form = useForm<z.infer<typeof personalInfoSchema>>({
-    resolver: zodResolver(personalInfoSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phone: "",
-    },
-  });
-
-  const { handleNextStep } = useMultiStepForm();
-
-  function onSubmit() {
-    handleNextStep();
-  }
-
+export default function PersonalInfoForm({
+  form,
+}: {
+  form: UseFormReturn<z.infer<typeof personalInfoSchema>>;
+}) {
   return (
     <>
       <CardHeader>
@@ -45,14 +28,16 @@ export default function PersonalInfoForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-4">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormMessage />
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Name</FormLabel>
+                    <FormMessage />
+                  </div>
                   <FormControl>
                     <Input placeholder="e.g. Stephen King" {...field} />
                   </FormControl>
@@ -65,8 +50,10 @@ export default function PersonalInfoForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
-                  <FormMessage />
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Email Address</FormLabel>
+                    <FormMessage />
+                  </div>
                   <FormControl>
                     <Input
                       placeholder="e.g. stephenking@lorem.com"
@@ -83,14 +70,12 @@ export default function PersonalInfoForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
-                  <FormMessage />
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormMessage />
+                  </div>
                   <FormControl>
-                    <Input
-                      placeholder="e.g. +1 234 567 890"
-                      type="number"
-                      {...field}
-                    />
+                    <Input placeholder="e.g. +1 234 567 890" {...field} />
                   </FormControl>
                 </FormItem>
               )}

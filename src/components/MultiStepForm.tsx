@@ -1,3 +1,7 @@
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { useMultiStepForm } from "../context/FormContext";
 import AddonForm from "./AddonForm";
 import MultiStepFormConfirmed from "./MultiStepFormConfirmed";
@@ -8,15 +12,41 @@ import PersonalInfoForm from "./PersonalInfoForm";
 import PlanSelectForm from "./PlanSelectForm";
 import Card from "./ui/Card";
 
-export default function MultiStepForm() {
-  const formSteps = [
-    <PersonalInfoForm />,
-    <PlanSelectForm />,
-    <AddonForm />,
-    <MultiStepFormSummary />,
-  ];
+export const personalInfoSchema = z.object({
+  fullName: z.string().min(1, "This field is required"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().min(1, "This field is required"),
+});
 
-  const { currentStep, formConfirmed } = useMultiStepForm();
+export default function MultiStepForm() {
+  const {
+    currentStep,
+    formConfirmed,
+    handleNextStep,
+    handleUpdatePersonalInfo,
+  } = useMultiStepForm();
+
+  const personalInfoForm = useForm<z.infer<typeof personalInfoSchema>>({
+    resolver: zodResolver(personalInfoSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+    },
+  });
+
+  async function onClickNext() {
+    if (currentStep === 0) {
+      await personalInfoForm.trigger();
+      if (personalInfoForm.formState.isValid) {
+        const data = personalInfoForm.getValues();
+        handleUpdatePersonalInfo(data);
+        handleNextStep();
+      }
+    } else {
+      handleNextStep();
+    }
+  }
 
   return (
     <>
@@ -30,14 +60,23 @@ export default function MultiStepForm() {
           </div>
           <div className="px-4">
             <Card>
-              {!formConfirmed && formSteps[currentStep]}
+              {!formConfirmed && (
+                <>
+                  {currentStep === 0 && (
+                    <PersonalInfoForm form={personalInfoForm} />
+                  )}
+                  {currentStep === 1 && <PlanSelectForm />}
+                  {currentStep === 2 && <AddonForm />}
+                  {currentStep === 3 && <MultiStepFormSummary />}
+                </>
+              )}
               {formConfirmed && <MultiStepFormConfirmed />}
             </Card>
           </div>
         </div>
         {!formConfirmed && (
           <div className="bg-white p-4">
-            <MultiStepFormNavigation lastStep={3} />
+            <MultiStepFormNavigation lastStep={3} onClickNext={onClickNext} />
           </div>
         )}
       </div>
@@ -48,10 +87,24 @@ export default function MultiStepForm() {
             <FormSteps />
           </div>
           <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-8">
-            {!formConfirmed && formSteps[currentStep]}
+            {!formConfirmed && (
+              <>
+                {currentStep === 0 && (
+                  <PersonalInfoForm form={personalInfoForm} />
+                )}
+                {currentStep === 1 && <PlanSelectForm />}
+                {currentStep === 2 && <AddonForm />}
+                {currentStep === 3 && <MultiStepFormSummary />}
+              </>
+            )}
             {formConfirmed && <MultiStepFormConfirmed />}
             <div className="w-full max-w-[450px]">
-              {!formConfirmed && <MultiStepFormNavigation lastStep={3} />}
+              {!formConfirmed && (
+                <MultiStepFormNavigation
+                  lastStep={3}
+                  onClickNext={onClickNext}
+                />
+              )}
             </div>
           </div>
         </Card>
