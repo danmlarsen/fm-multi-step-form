@@ -1,5 +1,5 @@
 import { useMultiStepForm } from "../context/FormContext";
-import Button from "./Button";
+import Button from "./ui/Button";
 
 type TProps = {
   lastStep: number;
