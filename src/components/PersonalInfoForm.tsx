@@ -19,7 +19,7 @@ export default function PersonalInfoForm({
   form: UseFormReturn<z.infer<typeof personalInfoSchema>>;
 }) {
   return (
-    <>
+    <div className="w-full max-w-[450px]">
       <CardHeader>
         <CardTitle>Personal info</CardTitle>
         <CardDescription>
@@ -83,6 +83,6 @@ export default function PersonalInfoForm({
           </form>
         </Form>
       </CardContent>
-    </>
+    </div>
   );
 }

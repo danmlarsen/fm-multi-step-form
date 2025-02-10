@@ -14,14 +14,12 @@ type TFormData = TPersonalInfo & {
 
 type TFormState = {
   currentStep: number;
-  currentStepIsValid: boolean;
   formData: TFormData;
   formConfirmed: boolean;
 };
 
 type TFormContext = TFormState & {
   handleSetStep: (step: number) => void;
-  handleSetStepIsValid: () => void;
   handleNextStep: () => void;
   handlePrevStep: () => void;
   handleUpdatePersonalInfo: (payload: TPersonalInfo) => void;
@@ -33,7 +31,6 @@ type TFormContext = TFormState & {
 
 type TActions =
   | { type: "SET_STEP"; payload: number }
-  | { type: "SET_STEP_IS_VALID" }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "UPDATE_PERSONAL_INFO"; payload: TPersonalInfo }
@@ -45,15 +42,14 @@ type TActions =
 const FormContext = createContext<TFormContext | null>(null);
 
 const initialFormState = {
-  currentStep: 2,
-  currentStepIsValid: false,
+  currentStep: 0,
   formData: {
-    fullName: "",
-    email: "",
-    phone: "",
+    fullName: "test",
+    email: "test@test.com",
+    phone: "1234",
     isYearly: true,
     selectedPlan: "Arcade",
-    selectedAddons: [0, 2],
+    selectedAddons: [],
   },
   formConfirmed: false,
 };
@@ -65,12 +61,6 @@ function reducer(state: TFormState, action: TActions) {
         ...state,
         formData: { ...state.formData },
         currentStep: action.payload,
-      };
-    case "SET_STEP_IS_VALID":
-      return {
-        ...state,
-        formData: { ...state.formData },
-        currentStepIsValid: true,
       };
     case "NEXT_STEP":
       return {
@@ -143,10 +133,6 @@ export function FormContextProvider({
     dispatch({ type: "PREV_STEP" });
   }
 
-  function handleSetStepIsValid() {
-    dispatch({ type: "SET_STEP_IS_VALID" });
-  }
-
   function handleUpdatePersonalInfo(payload: TPersonalInfo) {
     dispatch({ type: "UPDATE_PERSONAL_INFO", payload });
   }
@@ -174,7 +160,6 @@ export function FormContextProvider({
         handleSetStep,
         handleNextStep,
         handlePrevStep,
-        handleSetStepIsValid,
         handleUpdatePersonalInfo,
         handleUpdatePlan,
         handleToggleIsYearly,

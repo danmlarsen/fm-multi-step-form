@@ -8,7 +8,7 @@ import { formatPrice } from "@/lib/utils";
 
 export default function PlanSelectForm() {
   return (
-    <>
+    <div className="w-full max-w-[450px]">
       <CardHeader>
         <CardTitle>Select your plan</CardTitle>
         <CardDescription>
@@ -19,7 +19,7 @@ export default function PlanSelectForm() {
         <PlanSelect />
         <IsYearlyToggle />
       </CardContent>
-    </>
+    </div>
   );
 }
 

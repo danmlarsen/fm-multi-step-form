@@ -22,6 +22,7 @@ export default function MultiStepForm() {
   const {
     currentStep,
     formConfirmed,
+    formData,
     handleNextStep,
     handleUpdatePersonalInfo,
   } = useMultiStepForm();
@@ -29,16 +30,17 @@ export default function MultiStepForm() {
   const personalInfoForm = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
-      fullName: "",
-      email: "",
-      phone: "",
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
     },
   });
 
   async function onClickNext() {
     if (currentStep === 0) {
-      await personalInfoForm.trigger();
-      if (personalInfoForm.formState.isValid) {
+      const isValid = await personalInfoForm.trigger();
+
+      if (isValid) {
         const data = personalInfoForm.getValues();
         handleUpdatePersonalInfo(data);
         handleNextStep();

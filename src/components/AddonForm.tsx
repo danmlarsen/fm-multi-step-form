@@ -6,7 +6,7 @@ import { Checkbox } from "./ui/checkbox";
 
 export default function AddonForm() {
   return (
-    <>
+    <div className="w-full max-w-[450px]">
       <CardHeader>
         <CardTitle>Pick add-ons</CardTitle>
         <CardDescription>
@@ -16,7 +16,7 @@ export default function AddonForm() {
       <CardContent>
         <AddonList />
       </CardContent>
-    </>
+    </div>
   );
 }
 
