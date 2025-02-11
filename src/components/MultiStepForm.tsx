@@ -3,13 +3,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useMultiStepForm } from "../context/FormContext";
-import AddonForm from "./AddonForm";
+import AddonForm from "./forms/AddonForm";
 import MultiStepFormConfirmed from "./MultiStepFormConfirmed";
 import MultiStepFormNavigation from "./MultiStepFormNavigation";
 import FormSteps from "./MultiStepFormSteps";
 import MultiStepFormSummary from "./MultiStepFormSummary";
-import PersonalInfoForm from "./PersonalInfoForm";
-import PlanSelectForm from "./PlanSelectForm";
+import PersonalInfoForm from "./forms/PersonalInfoForm";
+import PlanSelectForm from "./forms/PlanSelectForm";
 import Card from "./ui/Card";
 
 export const personalInfoSchema = z.object({

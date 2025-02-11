@@ -19,12 +19,13 @@ export default function MultiStepFormSummary() {
     selectedAddons.includes(addon.id),
   );
 
-  const planPriceTotal = selectedPlanData[isYearly ? "yearly" : "monthly"];
-  const addonsPriceTotal = addons
-    .filter((_, idx) => selectedAddons.includes(idx))
-    .reduce((acc, val) => acc + val[isYearly ? "yearly" : "monthly"], 0);
+  const planPrice = selectedPlanData[isYearly ? "yearly" : "monthly"];
+  const addonsPriceTotal = selectedAddonsData.reduce(
+    (acc, val) => acc + val[isYearly ? "yearly" : "monthly"],
+    0,
+  );
 
-  const priceTotal = planPriceTotal + addonsPriceTotal;
+  const priceTotal = planPrice + addonsPriceTotal;
 
   return (
     <div className="w-full max-w-[450px]">

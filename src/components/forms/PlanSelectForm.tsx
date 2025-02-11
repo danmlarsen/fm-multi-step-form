@@ -1,8 +1,13 @@
-import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/Card";
 
-import { plans } from "../data/plans.json";
+import { plans } from "../../data/plans.json";
 import { useMultiStepForm } from "@/context/FormContext";
-import { Switch } from "./ui/switch";
+import { Switch } from "../ui/switch";
 import { twMerge } from "tailwind-merge";
 import { formatPrice } from "@/lib/utils";
 

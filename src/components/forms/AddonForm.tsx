@@ -1,8 +1,13 @@
 import { formatPrice } from "@/lib/utils";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/Card";
 import { addons } from "@/data/addons.json";
 import { useMultiStepForm } from "@/context/FormContext";
-import { Checkbox } from "./ui/checkbox";
+import { Checkbox } from "../ui/checkbox";
 
 export default function AddonForm() {
   return (
