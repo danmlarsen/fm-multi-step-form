@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import validator from "validator";
 
 import { useMultiStepForm } from "../context/FormContext";
 import AddonForm from "./forms/AddonForm";
@@ -13,9 +14,16 @@ import PlanSelectForm from "./forms/PlanSelectForm";
 import Card from "./ui/Card";
 
 export const personalInfoSchema = z.object({
-  fullName: z.string().min(1, "This field is required"),
-  email: z.string().email("Please enter a valid email"),
-  phone: z.string().min(1, "This field is required"),
+  fullName: z
+    .string()
+    .trim()
+    .min(1, "This field is required")
+    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid full name"),
+  email: z.string().min(1, "This field is required").email("Invalid email"),
+  phone: z
+    .string()
+    .min(1, "This field is required")
+    .refine(validator.isMobilePhone, "Invalid phone number"),
 });
 
 export default function MultiStepForm() {
