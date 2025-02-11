@@ -55,7 +55,7 @@ function PlanOption({
   return (
     <button
       className={twMerge(
-        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3 md:flex-col md:justify-between",
+        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3 transition duration-300 md:flex-col md:justify-between",
         className,
       )}
       {...props}
@@ -79,13 +79,19 @@ function IsYearlyToggle() {
   return (
     <div className="bg-alabaster flex justify-center gap-6 rounded-lg py-3 text-sm font-bold">
       <span
-        className={`text-grey-cool ${isYearly ? "text-grey-cool" : "text-marine-blue"}`}
+        className={twMerge(
+          "text-marine-blue transition duration-300",
+          isYearly && "text-grey-cool",
+        )}
       >
         Monthly
       </span>
       <Switch checked={isYearly} onCheckedChange={handleToggleIsYearly} />
       <span
-        className={`text-grey-cool ${isYearly ? "text-marine-blue" : "text-grey-cool"}`}
+        className={twMerge(
+          "text-grey-cool transition duration-300",
+          isYearly && "text-marine-blue",
+        )}
       >
         Yearly
       </span>

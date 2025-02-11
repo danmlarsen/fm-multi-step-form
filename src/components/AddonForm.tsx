@@ -38,7 +38,7 @@ function AddonItem({ addon }: { addon: (typeof addons)[0] }) {
 
   return (
     <li
-      className={`grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md border px-4 py-3 ${selectedAddons.includes(addon.id) ? "bg-alabaster border-purplish-blue" : "border-grey-light"}`}
+      className={`grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md border px-4 py-3 transition duration-300 ${selectedAddons.includes(addon.id) ? "bg-alabaster border-purplish-blue" : "border-grey-light"}`}
       onClick={() => handleToggleAddon(addon.id)}
     >
       <Checkbox

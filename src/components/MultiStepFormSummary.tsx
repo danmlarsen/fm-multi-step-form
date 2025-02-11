@@ -3,10 +3,12 @@ import { addons } from "../data/addons.json";
 import { plans } from "../data/plans.json";
 import { useMultiStepForm } from "../context/FormContext";
 import { formatPrice } from "@/lib/utils";
+import Button from "./ui/Button";
 
 export default function MultiStepFormSummary() {
   const {
     formData: { selectedPlan, selectedAddons, isYearly },
+    handleSetStep,
   } = useMultiStepForm();
 
   const selectedPlanData = plans.find(
@@ -36,7 +38,14 @@ export default function MultiStepFormSummary() {
         <div className="bg-magnolia rounded-lg px-6 py-4 text-sm">
           <div className="flex items-center justify-between">
             <div className="font-medium">
-              {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
+              <div>
+                {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
+              </div>
+              <div>
+                <Button variant="link" onClick={() => handleSetStep(1)}>
+                  Change
+                </Button>
+              </div>
             </div>
             <div className="font-bold">
               {formatPrice(selectedPlanData, isYearly)}

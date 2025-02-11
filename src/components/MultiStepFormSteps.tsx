@@ -39,7 +39,10 @@ export function FormStep({
   return (
     <div className="md:flex md:items-center md:gap-4">
       <div
-        className={`grid size-[33px] place-items-center rounded-full font-bold ${isActive ? "bg-pastel-blue text-marine-blue" : "bg-blue border border-white"}`}
+        className={twMerge(
+          "bg-blue grid size-[33px] place-items-center rounded-full border border-white font-bold transition duration-300",
+          isActive && "bg-pastel-blue text-marine-blue border-pastel-blue",
+        )}
       >
         {stepNum}
       </div>

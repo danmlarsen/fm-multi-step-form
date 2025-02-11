@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-type TButtonVariants = "default" | "secondary" | "ghost";
+type TButtonVariants = "default" | "secondary" | "ghost" | "link";
 
 type TProps = React.ComponentProps<"button"> & {
   variant?: TButtonVariants;
@@ -15,6 +15,7 @@ export default function Button({
     default: "bg-marine-blue text-white",
     secondary: "bg-purplish-blue",
     ghost: "text-grey-cool",
+    link: "px-0 py-0 underline text-grey-cool hover:text-purplish-blue",
   };
 
   return (
