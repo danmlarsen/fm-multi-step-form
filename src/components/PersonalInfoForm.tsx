@@ -34,7 +34,7 @@ export default function PersonalInfoForm({
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <div className="flex items-center justify-between">
+                  <div className="flex h-5 items-center justify-between pb-2">
                     <FormLabel>Name</FormLabel>
                     <FormMessage />
                   </div>

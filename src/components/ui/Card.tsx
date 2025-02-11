@@ -27,7 +27,10 @@ export function CardHeader({
 export function CardTitle({ className, ...props }: React.ComponentProps<"h2">) {
   return (
     <h2
-      className={twMerge("text-marine-blue text-2xl font-bold", className)}
+      className={twMerge(
+        "text-marine-blue text-2xl font-bold md:text-3xl",
+        className,
+      )}
       {...props}
     />
   );
@@ -37,7 +40,12 @@ export function CardDescription({
   className,
   ...props
 }: React.ComponentProps<"small">) {
-  return <small className={twMerge("text-grey-cool", className)} {...props} />;
+  return (
+    <small
+      className={twMerge("text-grey-cool text-base", className)}
+      {...props}
+    />
+  );
 }
 
 export function CardContent({

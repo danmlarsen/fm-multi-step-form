@@ -42,7 +42,11 @@ export default function MultiStepFormSummary() {
                 {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
               </div>
               <div>
-                <Button variant="link" onClick={() => handleSetStep(1)}>
+                <Button
+                  className="font-normal"
+                  variant="link"
+                  onClick={() => handleSetStep(1)}
+                >
                   Change
                 </Button>
               </div>

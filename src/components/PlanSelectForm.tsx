@@ -62,9 +62,11 @@ function PlanOption({
     >
       <img className="mt-[3px]" src={plan.planIcon} alt={plan.planTitle} />
       <span className="flex flex-col items-start">
-        <span>{plan.planTitle}</span>
-        <span>{formatPrice(plan, isYearly)}</span>
-        {isYearly && <span>2 months free</span>}
+        <span className="font-medium">{plan.planTitle}</span>
+        <span className="text-grey-cool text-sm">
+          {formatPrice(plan, isYearly)}
+        </span>
+        {isYearly && <span className="text-xs leading-5">2 months free</span>}
       </span>
     </button>
   );

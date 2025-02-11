@@ -10,7 +10,7 @@ export default function AddonForm() {
       <CardHeader>
         <CardTitle>Pick add-ons</CardTitle>
         <CardDescription>
-          Add-ons help enhance your gaming experience
+          Add-ons help enhance your gaming experience.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -47,7 +47,7 @@ function AddonItem({ addon }: { addon: (typeof addons)[0] }) {
       />
       <div className="space-y-0.5">
         <h3 className="text-sm font-bold">{addon.addonTitle}</h3>
-        <p className="text-xs">{addon.desc}</p>
+        <p className="text-grey-cool text-xs">{addon.desc}</p>
       </div>
       <div className="text-purplish-blue text-xs">
         +{formatPrice(addon, isYearly)}

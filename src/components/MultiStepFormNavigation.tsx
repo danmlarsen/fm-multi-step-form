@@ -26,7 +26,7 @@ export default function MultiStepFormNavigation({
           <Button onClick={onClickNext}>Next Step</Button>
         )}
         {currentStep === lastStep && (
-          <Button className="bg-purplish-blue" onClick={handleConfirmForm}>
+          <Button variant="secondary" onClick={handleConfirmForm}>
             Confirm
           </Button>
         )}

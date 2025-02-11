@@ -3,7 +3,7 @@ import { FormContextProvider } from "./context/FormContext";
 
 function App() {
   return (
-    <div className="font-display bg-magnolia min-h-screen">
+    <div className="font-display bg-magnolia text-marine-blue min-h-screen">
       <FormContextProvider>
         <MultiStepForm />
       </FormContextProvider>

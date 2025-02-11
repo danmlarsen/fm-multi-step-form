@@ -44,9 +44,9 @@ const FormContext = createContext<TFormContext | null>(null);
 const initialFormState = {
   currentStep: 0,
   formData: {
-    fullName: "test",
-    email: "test@test.com",
-    phone: "1234",
+    fullName: "",
+    email: "",
+    phone: "",
     isYearly: true,
     selectedPlan: "Arcade",
     selectedAddons: [],
