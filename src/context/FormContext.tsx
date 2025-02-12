@@ -47,9 +47,9 @@ const initialFormState = {
     fullName: "",
     email: "",
     phone: "",
-    isYearly: true,
+    isYearly: false,
     selectedPlan: "Arcade",
-    selectedAddons: [],
+    selectedAddons: [0, 1],
   },
   formConfirmed: false,
 };

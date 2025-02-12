@@ -36,9 +36,9 @@ export default function MultiStepFormSummary() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="bg-magnolia rounded-lg px-6 py-4 text-sm">
+        <div className="bg-magnolia rounded-lg px-6 pt-4 pb-6 text-sm">
           <div className="flex items-center justify-between">
-            <div className="font-medium">
+            <div className="space-y-1.5 font-medium">
               <div>
                 {selectedPlanData.planTitle} ({isYearly ? "Yearly" : "Monthly"})
               </div>
@@ -57,7 +57,7 @@ export default function MultiStepFormSummary() {
             </div>
           </div>
           {selectedAddonsData.length > 0 && (
-            <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:space-y-4">
+            <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:mt-6 md:space-y-4 md:pt-4">
               {selectedAddonsData.map((addon) => (
                 <SummaryAddonItem
                   key={addon.id}
@@ -72,7 +72,7 @@ export default function MultiStepFormSummary() {
           <div className="text-grey-cool text-sm">
             Total (per {isYearly ? "year" : "month"})
           </div>
-          <div className="text-purplish-blue font-bold">
+          <div className="text-purplish-blue font-bold md:text-xl">
             ${priceTotal}/{isYearly ? "yr" : "mo"}
           </div>
         </div>

@@ -15,7 +15,7 @@ export default function Button({
     default: "bg-marine-blue  hover:bg-marine-blue/75",
     secondary: "bg-purplish-blue  hover:bg-purplish-blue/75",
     ghost: "text-grey-cool hover:text-marine-blue",
-    link: "px-0 py-0 underline text-grey-cool hover:text-purplish-blue",
+    link: "px-0 py-0 underline text-grey-cool hover:text-purplish-blue h-auto md:px-0 md:py-0 md:h-auto text-sm md:text-sm",
   };
 
   return (

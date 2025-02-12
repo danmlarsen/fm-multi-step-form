@@ -10,6 +10,7 @@ import { addons } from "@/data/addons.json";
 
 import { formatPrice } from "@/lib/utils";
 import { useMultiStepForm } from "@/context/FormContext";
+import { twMerge } from "tailwind-merge";
 
 export default function AddonForm() {
   return (
@@ -45,11 +46,15 @@ function AddonItem({ addon }: { addon: (typeof addons)[0] }) {
 
   return (
     <li
-      className={`grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md border px-4 py-3 transition duration-300 ${selectedAddons.includes(addon.id) ? "bg-alabaster border-purplish-blue" : "border-grey-light"}`}
+      className={twMerge(
+        "border-grey-light hover:border-purplish-blue grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md border px-4 py-3 transition duration-300",
+        selectedAddons.includes(addon.id) &&
+          "bg-alabaster border-purplish-blue",
+      )}
       onClick={() => handleToggleAddon(addon.id)}
     >
       <Checkbox
-        className="size-5"
+        className="size-5 cursor-pointer"
         checked={selectedAddons.includes(addon.id)}
       />
       <div className="space-y-0.5">
