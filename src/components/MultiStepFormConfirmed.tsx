@@ -2,7 +2,7 @@ import IconThankyou from "../assets/images/icon-thank-you.svg";
 
 export default function MultiStepFormConfirmed() {
   return (
-    <div className="flex min-h-[400px] w-full max-w-[450px] flex-col items-center justify-center gap-6 px-4 text-center">
+    <div className="flex min-h-[25rem] flex-col items-center justify-center gap-6 px-4 text-center">
       <img
         className="size-14 md:size-20"
         src={IconThankyou}

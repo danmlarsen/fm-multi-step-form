@@ -60,16 +60,17 @@ export default function MultiStepForm() {
 
   return (
     <>
+      {/* Mobile / tablet view */}
       <div className="relative grid min-h-screen grid-rows-[1fr_auto] pt-8 md:hidden">
         <div
-          className={`absolute top-0 right-0 left-0 h-[172px] bg-[url(/assets/images/bg-sidebar-mobile.svg)] bg-cover bg-no-repeat`}
+          className={`absolute top-0 right-0 left-0 h-[10.75rem] bg-[url(/assets/images/bg-sidebar-mobile.svg)] bg-cover bg-no-repeat`}
         />
-        <div className="relative space-y-[34px]">
+        <div className="relative space-y-[2.125rem]">
           <div className="flex justify-center">
             <FormSteps />
           </div>
           <div className="flex justify-center px-4">
-            <Card className="w-full max-w-[450px]">
+            <Card className="w-full max-w-[28.125rem]">
               {!formConfirmed && (
                 <>
                   {currentStep === 0 && (
@@ -91,24 +92,28 @@ export default function MultiStepForm() {
         )}
       </div>
 
+      {/* Desktop view */}
       <div className="hidden min-h-screen place-items-center px-6 md:grid">
-        <Card className="grid min-h-[600px] max-w-[940px] grid-cols-[auto_1fr] p-4">
-          <div className="w-[274px] rounded-[10px] bg-[url(/assets/images/bg-sidebar-desktop.svg)] bg-cover bg-no-repeat px-8 py-10">
+        <Card className="grid min-h-[37.5rem] max-w-[58.75rem] grid-cols-[auto_1fr] p-4">
+          <div className="w-[17.125rem] rounded-[0.625rem] bg-[url(/assets/images/bg-sidebar-desktop.svg)] bg-cover bg-no-repeat px-8 py-10">
             <FormSteps />
           </div>
           <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-8">
-            {!formConfirmed && (
-              <>
-                {currentStep === 0 && (
-                  <PersonalInfoForm form={personalInfoForm} />
-                )}
-                {currentStep === 1 && <PlanSelectForm />}
-                {currentStep === 2 && <AddonForm />}
-                {currentStep === 3 && <MultiStepFormSummary />}
-              </>
-            )}
-            {formConfirmed && <MultiStepFormConfirmed />}
-            <div className="w-full max-w-[450px]">
+            <div className="w-full max-w-[28.125rem]">
+              {!formConfirmed && (
+                <>
+                  {currentStep === 0 && (
+                    <PersonalInfoForm form={personalInfoForm} />
+                  )}
+                  {currentStep === 1 && <PlanSelectForm />}
+                  {currentStep === 2 && <AddonForm />}
+                  {currentStep === 3 && <MultiStepFormSummary />}
+                </>
+              )}
+              {formConfirmed && <MultiStepFormConfirmed />}
+            </div>
+
+            <div className="w-full max-w-[28.125rem]">
               {!formConfirmed && (
                 <MultiStepFormNavigation
                   lastStep={3}

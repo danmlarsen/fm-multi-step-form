@@ -1,3 +1,5 @@
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -14,8 +16,6 @@ import {
   CardTitle,
 } from "../ui/Card";
 
-import { UseFormReturn } from "react-hook-form";
-import { z } from "zod";
 import { personalInfoSchema } from "../MultiStepForm";
 import { useMultiStepForm } from "@/context/FormContext";
 
@@ -32,7 +32,7 @@ export default function PersonalInfoForm({
   }
 
   return (
-    <div className="w-full max-w-[450px]">
+    <>
       <CardHeader>
         <CardTitle>Personal info</CardTitle>
         <CardDescription>
@@ -52,7 +52,11 @@ export default function PersonalInfoForm({
                     <FormMessage />
                   </div>
                   <FormControl>
-                    <Input placeholder="e.g. Stephen King" {...field} />
+                    <Input
+                      placeholder="e.g. Stephen King"
+                      autoComplete="name"
+                      {...field}
+                    />
                   </FormControl>
                 </FormItem>
               )}
@@ -88,7 +92,12 @@ export default function PersonalInfoForm({
                     <FormMessage />
                   </div>
                   <FormControl>
-                    <Input placeholder="e.g. +1 234 567 890" {...field} />
+                    <Input
+                      placeholder="e.g. +1 234 567 890"
+                      type="tel"
+                      autoComplete="tel"
+                      {...field}
+                    />
                   </FormControl>
                 </FormItem>
               )}
@@ -98,6 +107,6 @@ export default function PersonalInfoForm({
           </form>
         </Form>
       </CardContent>
-    </div>
+    </>
   );
 }

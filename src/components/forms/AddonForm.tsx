@@ -1,17 +1,19 @@
-import { formatPrice } from "@/lib/utils";
+import { Checkbox } from "../ui/checkbox";
 import {
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "../ui/Card";
+
 import { addons } from "@/data/addons.json";
+
+import { formatPrice } from "@/lib/utils";
 import { useMultiStepForm } from "@/context/FormContext";
-import { Checkbox } from "../ui/checkbox";
 
 export default function AddonForm() {
   return (
-    <div className="w-full max-w-[450px]">
+    <>
       <CardHeader>
         <CardTitle>Pick add-ons</CardTitle>
         <CardDescription>
@@ -21,7 +23,7 @@ export default function AddonForm() {
       <CardContent>
         <AddonList />
       </CardContent>
-    </div>
+    </>
   );
 }
 

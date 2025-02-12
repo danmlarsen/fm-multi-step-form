@@ -4,16 +4,16 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/Card";
-
-import { plans } from "../../data/plans.json";
-import { useMultiStepForm } from "@/context/FormContext";
-import { Switch } from "../ui/switch";
 import { twMerge } from "tailwind-merge";
+import { Switch } from "../ui/switch";
+
 import { formatPrice } from "@/lib/utils";
+import { useMultiStepForm } from "@/context/FormContext";
+import { plans } from "../../data/plans.json";
 
 export default function PlanSelectForm() {
   return (
-    <div className="w-full max-w-[450px]">
+    <>
       <CardHeader>
         <CardTitle>Select your plan</CardTitle>
         <CardDescription>
@@ -24,7 +24,7 @@ export default function PlanSelectForm() {
         <PlanSelect />
         <IsYearlyToggle />
       </CardContent>
-    </div>
+    </>
   );
 }
 
@@ -35,7 +35,7 @@ function PlanSelect() {
   } = useMultiStepForm();
 
   return (
-    <div className="grid min-h-[160px] gap-3 md:grid-cols-3 md:gap-[18px]">
+    <div className="grid min-h-[10rem] gap-3 md:grid-cols-3 md:gap-[1.125rem]">
       {plans.map((plan) => (
         <PlanOption
           key={plan.planTitle}

@@ -28,7 +28,7 @@ export default function MultiStepFormSummary() {
   const priceTotal = planPrice + addonsPriceTotal;
 
   return (
-    <div className="w-full max-w-[450px]">
+    <>
       <CardHeader>
         <CardTitle>Finishing up</CardTitle>
         <CardDescription>
@@ -56,15 +56,17 @@ export default function MultiStepFormSummary() {
               {formatPrice(selectedPlanData, isYearly)}
             </div>
           </div>
-          <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:space-y-4">
-            {selectedAddonsData.map((addon) => (
-              <SummaryAddonItem
-                key={addon.id}
-                addon={addon}
-                isYearly={isYearly}
-              />
-            ))}
-          </div>
+          {selectedAddonsData.length > 0 && (
+            <div className="border-grey-cool/20 mt-3 space-y-3 border-t pt-3 md:space-y-4">
+              {selectedAddonsData.map((addon) => (
+                <SummaryAddonItem
+                  key={addon.id}
+                  addon={addon}
+                  isYearly={isYearly}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex items-center justify-between px-6 pt-6">
           <div className="text-grey-cool text-sm">
@@ -75,7 +77,7 @@ export default function MultiStepFormSummary() {
           </div>
         </div>
       </CardContent>
-    </div>
+    </>
   );
 }
 

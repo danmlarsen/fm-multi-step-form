@@ -53,9 +53,9 @@
   --muted-foreground: var(--color-grey-cool);
   --accent: hsl(240 4.8% 95.9%);
   --accent-foreground: hsl(240 5.9% 10%);
-  --destructive: hsl(0 84.2% 60.2%);
+  --destructive: var(--color-strawberry-red);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(240 5.9% 90%);
+  --border: var(--color-grey-light);
   --input: hsl(240 5.9% 90%);
   --ring: var(--color-purplish-blue);
   --chart-1: hsl(12 76% 61%);

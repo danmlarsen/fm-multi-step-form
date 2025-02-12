@@ -7,7 +7,7 @@ export default function Card({
   return (
     <div
       className={twMerge(
-        "flex w-full flex-col justify-center rounded-[10px] bg-white px-6 py-8",
+        "flex w-full flex-col justify-center rounded-[0.625rem] bg-white px-6 py-8",
         className,
       )}
       {...props}
@@ -52,5 +52,5 @@ export function CardContent({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  return <div className={twMerge("pt-[22px]", className)} {...props} />;
+  return <div className={twMerge("pt-[1.375rem]", className)} {...props} />;
 }
