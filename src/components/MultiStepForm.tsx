@@ -94,11 +94,11 @@ export default function MultiStepForm() {
 
       {/* Desktop view */}
       <div className="hidden min-h-screen place-items-center px-6 md:grid">
-        <Card className="grid min-h-[37.5rem] max-w-[58.75rem] grid-cols-[auto_1fr] p-4">
+        <Card className="grid min-h-[37.5rem] max-w-[58.75rem] grid-cols-[auto_1fr] p-4 pr-0">
           <div className="w-[17.125rem] rounded-[0.625rem] bg-[url(/assets/images/bg-sidebar-desktop.svg)] bg-cover bg-no-repeat px-8 py-10">
             <FormSteps />
           </div>
-          <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-8">
+          <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-4">
             <div className="w-full max-w-[28.125rem]">
               {!formConfirmed && (
                 <>

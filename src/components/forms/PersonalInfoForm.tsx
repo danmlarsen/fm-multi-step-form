@@ -41,13 +41,16 @@ export default function PersonalInfoForm({
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            className="space-y-4 md:space-y-6"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <div className="flex h-5 items-center justify-between pb-2">
+                  <div className="flex h-5 items-center justify-between">
                     <FormLabel>Name</FormLabel>
                     <FormMessage />
                   </div>

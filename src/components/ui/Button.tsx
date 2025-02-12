@@ -21,7 +21,7 @@ export default function Button({
   return (
     <button
       className={twMerge(
-        "cursor-pointer rounded-sm px-4 py-3 text-sm text-white transition duration-300",
+        "flex h-10 cursor-pointer items-center justify-center rounded-sm px-4 text-sm font-medium text-white transition duration-300 md:h-12 md:rounded-md md:px-6 md:text-base",
         variantClasses[variant],
         className,
       )}

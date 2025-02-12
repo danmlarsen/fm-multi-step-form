@@ -24,11 +24,15 @@ export default function FormSteps({
 
   return (
     <div
-      className={twMerge("flex gap-4 text-white md:flex-col", className)}
+      className={twMerge(
+        "flex gap-4 text-white md:flex-col md:gap-8",
+        className,
+      )}
       {...props}
     >
       {formStepsData.map((step, idx) => (
         <FormStep
+          key={idx}
           stepNum={idx + 1}
           stepDescription={step.stepDescription}
           isActive={currentStep === idx}
@@ -58,8 +62,10 @@ export function FormStep({
         {stepNum}
       </div>
       <div className="hidden text-left uppercase md:block">
-        <div className="text-light-blue text-xs">Step {stepNum}</div>
-        <div className="text-sm font-bold">{stepDescription}</div>
+        <div className="text-light-blue text-xs leading-tight">
+          Step {stepNum}
+        </div>
+        <div className="text-sm leading-tight font-bold">{stepDescription}</div>
       </div>
     </div>
   );
