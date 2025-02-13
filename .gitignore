@@ -41,3 +41,9 @@ dist-ssr
 .prettierignore
 
 starter-files/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
