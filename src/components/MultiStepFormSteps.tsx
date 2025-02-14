@@ -56,7 +56,8 @@ export function FormStep({
       <div
         className={twMerge(
           "bg-blue grid size-[2.0625rem] place-items-center rounded-full border border-white font-bold transition duration-300",
-          isActive && "bg-magnolia text-marine-blue border-magnolia",
+          isActive &&
+            "bg-light-blue text-marine-blue border-light-bluebg-light-blue",
         )}
       >
         {stepNum}
