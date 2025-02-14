@@ -56,16 +56,18 @@ export function FormStep({
       <div
         className={twMerge(
           "bg-blue grid size-[2.0625rem] place-items-center rounded-full border border-white font-bold transition duration-300",
-          isActive && "bg-pastel-blue text-marine-blue border-pastel-blue",
+          isActive && "bg-magnolia text-marine-blue border-magnolia",
         )}
       >
         {stepNum}
       </div>
-      <div className="hidden text-left uppercase md:block">
+      <div className="hidden flex-col gap-0.5 text-left uppercase md:flex">
         <div className="text-light-blue text-xs leading-tight">
           Step {stepNum}
         </div>
-        <div className="text-sm leading-tight font-bold">{stepDescription}</div>
+        <div className="text-sm leading-tight font-bold tracking-[1px]">
+          {stepDescription}
+        </div>
       </div>
     </div>
   );
