@@ -49,7 +49,7 @@ const initialFormState = {
     phone: "",
     isYearly: false,
     selectedPlan: "Arcade",
-    selectedAddons: [0, 1],
+    selectedAddons: [],
   },
   formConfirmed: false,
 };
