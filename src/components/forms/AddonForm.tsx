@@ -57,9 +57,9 @@ function AddonItem({ addon }: { addon: (typeof addons)[0] }) {
         className="size-5 cursor-pointer"
         checked={selectedAddons.includes(addon.id)}
       />
-      <div className="space-y-0.5">
-        <h3 className="text-sm font-bold">{addon.addonTitle}</h3>
-        <p className="text-grey-cool text-xs">{addon.desc}</p>
+      <div className="flex flex-col gap-0.5">
+        <span className="text-sm font-bold">{addon.addonTitle}</span>
+        <span className="text-grey-cool text-xs">{addon.desc}</span>
       </div>
       <div className="text-purplish-blue text-xs">
         +{formatPrice(addon, isYearly)}

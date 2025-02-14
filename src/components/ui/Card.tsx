@@ -21,7 +21,7 @@ export function CardHeader({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      className={twMerge("flex flex-col gap-2 md:gap-[11px]", className)}
+      className={twMerge("flex flex-col gap-2 md:gap-3.5", className)}
       {...props}
     />
   );
@@ -31,7 +31,7 @@ export function CardTitle({ className, ...props }: React.ComponentProps<"h2">) {
   return (
     <h2
       className={twMerge(
-        "text-marine-blue text-2xl font-bold md:text-[32px]",
+        "text-marine-blue text-2xl leading-[1] font-bold md:text-[32px]",
         className,
       )}
       {...props}
@@ -56,6 +56,6 @@ export function CardContent({
   ...props
 }: React.ComponentProps<"div">) {
   return (
-    <div className={twMerge("pt-[1.375rem] md:pt-10", className)} {...props} />
+    <div className={twMerge("pt-[1.375rem] md:pt-9", className)} {...props} />
   );
 }
