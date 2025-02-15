@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validator from "validator";
+import { AnimatePresence, motion } from "motion/react";
 
 import { useMultiStepForm } from "../context/FormContext";
 import AddonForm from "./forms/AddonForm";
@@ -12,6 +13,15 @@ import MultiStepFormSummary from "./MultiStepFormSummary";
 import PersonalInfoForm from "./forms/PersonalInfoForm";
 import PlanSelectForm from "./forms/PlanSelectForm";
 import Card from "./ui/Card";
+
+const animationContainerVariant = {
+  active: {
+    opacity: 1,
+  },
+  inactive: {
+    opacity: 0,
+  },
+};
 
 export const personalInfoSchema = z.object({
   fullName: z
@@ -71,17 +81,27 @@ export default function MultiStepForm() {
           </div>
           <div className="flex justify-center px-4">
             <Card className="w-full max-w-[28.125rem]">
-              {!formConfirmed && (
-                <>
-                  {currentStep === 0 && (
-                    <PersonalInfoForm form={personalInfoForm} />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  variants={animationContainerVariant}
+                  initial="inactive"
+                  animate="active"
+                  exit="inactive"
+                  key={`${currentStep}_${formConfirmed}`}
+                >
+                  {!formConfirmed && (
+                    <>
+                      {currentStep === 0 && (
+                        <PersonalInfoForm form={personalInfoForm} />
+                      )}
+                      {currentStep === 1 && <PlanSelectForm />}
+                      {currentStep === 2 && <AddonForm />}
+                      {currentStep === 3 && <MultiStepFormSummary />}
+                    </>
                   )}
-                  {currentStep === 1 && <PlanSelectForm />}
-                  {currentStep === 2 && <AddonForm />}
-                  {currentStep === 3 && <MultiStepFormSummary />}
-                </>
-              )}
-              {formConfirmed && <MultiStepFormConfirmed />}
+                  {formConfirmed && <MultiStepFormConfirmed />}
+                </motion.div>
+              </AnimatePresence>
             </Card>
           </div>
         </div>
@@ -100,17 +120,27 @@ export default function MultiStepForm() {
           </div>
           <div className="grid grid-rows-[1fr_auto] justify-items-center p-6 pt-10 pb-4">
             <div className="w-full max-w-[28.125rem]">
-              {!formConfirmed && (
-                <>
-                  {currentStep === 0 && (
-                    <PersonalInfoForm form={personalInfoForm} />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  variants={animationContainerVariant}
+                  initial="inactive"
+                  animate="active"
+                  exit="inactive"
+                  key={`${currentStep}_${formConfirmed}`}
+                >
+                  {!formConfirmed && (
+                    <>
+                      {currentStep === 0 && (
+                        <PersonalInfoForm form={personalInfoForm} />
+                      )}
+                      {currentStep === 1 && <PlanSelectForm />}
+                      {currentStep === 2 && <AddonForm />}
+                      {currentStep === 3 && <MultiStepFormSummary />}
+                    </>
                   )}
-                  {currentStep === 1 && <PlanSelectForm />}
-                  {currentStep === 2 && <AddonForm />}
-                  {currentStep === 3 && <MultiStepFormSummary />}
-                </>
-              )}
-              {formConfirmed && <MultiStepFormConfirmed />}
+                  {formConfirmed && <MultiStepFormConfirmed />}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             <div className="w-full max-w-[28.125rem]">
