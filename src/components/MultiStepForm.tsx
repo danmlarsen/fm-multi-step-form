@@ -17,8 +17,13 @@ import Card from "./ui/Card";
 const animationContainerVariant = {
   active: {
     opacity: 1,
+    x: 0,
   },
   inactive: {
+    opacity: 0,
+    x: -20,
+  },
+  exit: {
     opacity: 0,
   },
 };
@@ -86,7 +91,7 @@ export default function MultiStepForm() {
                   variants={animationContainerVariant}
                   initial="inactive"
                   animate="active"
-                  exit="inactive"
+                  exit="exit"
                   key={`${currentStep}_${formConfirmed}`}
                 >
                   {!formConfirmed && (
@@ -125,7 +130,7 @@ export default function MultiStepForm() {
                   variants={animationContainerVariant}
                   initial="inactive"
                   animate="active"
-                  exit="inactive"
+                  exit="exit"
                   key={`${currentStep}_${formConfirmed}`}
                 >
                   {!formConfirmed && (
