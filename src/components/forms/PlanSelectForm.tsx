@@ -5,6 +5,7 @@ import {
   CardTitle,
 } from "../ui/Card";
 import { twMerge } from "tailwind-merge";
+import { AnimatePresence, motion } from "motion/react";
 import { Switch } from "../ui/switch";
 
 import { formatPrice } from "@/lib/utils";
@@ -66,13 +67,27 @@ function PlanOption({
       {...props}
     >
       <img className="mt-[3px]" src={plan.planIcon} alt={plan.planTitle} />
-      <span className="flex flex-col items-start">
-        <span className="font-medium">{plan.planTitle}</span>
-        <span className="text-grey-cool text-sm">
+      <motion.span className="flex flex-col items-start" layout>
+        <motion.span className="font-medium" layout>
+          {plan.planTitle}
+        </motion.span>
+        <motion.span className="text-grey-cool text-sm" layout>
           {formatPrice(plan, isYearly)}
-        </span>
-        {isYearly && <span className="text-xs leading-5">2 months free</span>}
-      </span>
+        </motion.span>
+        <AnimatePresence>
+          {isYearly && (
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-xs leading-5"
+              layout
+            >
+              2 months free
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.span>
     </button>
   );
 }
