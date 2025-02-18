@@ -29,42 +29,56 @@ export default function PlanSelectForm() {
   );
 }
 
-function PlanSelect() {
-  const {
-    formData: { selectedPlan },
-    handleUpdatePlan,
-  } = useMultiStepForm();
+const planSelectVariant = {
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
 
+function PlanSelect() {
   return (
-    <div className="grid min-h-[10rem] gap-3 md:grid-cols-3 md:gap-[1.125rem]">
+    <motion.div
+      variants={planSelectVariant}
+      initial="hide"
+      animate="show"
+      className="grid min-h-[10rem] gap-3 md:grid-cols-3 md:gap-[1.125rem]"
+      layout
+    >
       {plans.map((plan) => (
-        <PlanOption
-          key={plan.planTitle}
-          className={`${selectedPlan === plan.planTitle ? "bg-alabaster border-purplish-blue" : ""}`}
-          onClick={() => handleUpdatePlan(plan.planTitle)}
-          plan={plan}
-        />
+        <PlanOption key={plan.planTitle} plan={plan} />
       ))}
-    </div>
+    </motion.div>
   );
 }
+
+const planOptionVariant = {
+  show: { opacity: 1, x: 0 },
+  hide: { opacity: 0, x: -20 },
+};
 
 function PlanOption({
   plan,
   className,
-  ...props
-}: React.ComponentProps<"button"> & { plan: (typeof plans)[0] }) {
+}: {
+  plan: (typeof plans)[0];
+  className?: string;
+}) {
   const {
-    formData: { isYearly },
+    formData: { isYearly, selectedPlan },
+    handleUpdatePlan,
   } = useMultiStepForm();
 
   return (
-    <button
+    <motion.button
+      variants={planOptionVariant}
       className={twMerge(
-        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3 transition duration-300 md:flex-col md:justify-between",
+        "border-grey-light hover:border-purplish-blue flex cursor-pointer items-start gap-3.5 rounded-md border px-4 py-3 transition-colors duration-300 md:flex-col md:justify-between",
+        selectedPlan === plan.planTitle && "bg-alabaster border-purplish-blue",
         className,
       )}
-      {...props}
+      onClick={() => handleUpdatePlan(plan.planTitle)}
     >
       <img className="mt-[3px]" src={plan.planIcon} alt={plan.planTitle} />
       <motion.span className="flex flex-col items-start" layout>
@@ -74,7 +88,7 @@ function PlanOption({
         <motion.span className="text-grey-cool text-sm" layout>
           {formatPrice(plan, isYearly)}
         </motion.span>
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {isYearly && (
             <motion.span
               initial={{ opacity: 0 }}
@@ -88,7 +102,7 @@ function PlanOption({
           )}
         </AnimatePresence>
       </motion.span>
-    </button>
+    </motion.button>
   );
 }
 
