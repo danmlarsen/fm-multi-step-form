@@ -1,4 +1,6 @@
 import { twMerge } from "tailwind-merge";
+import { motion } from "motion/react";
+
 import { useMultiStepForm } from "../context/FormContext";
 
 const formStepsData = [
@@ -52,7 +54,14 @@ export function FormStep({
   isActive?: boolean;
 }) {
   return (
-    <div className="md:flex md:items-center md:gap-4">
+    <motion.div
+      key={`${stepNum}_${isActive ? "active" : "inactive"}`}
+      initial={{ scale: 1 }}
+      animate={isActive && { scale: [1, 1.1, 1] }}
+      // transition={{ duration: 0.3 }}
+      transition={{ type: "tween" }}
+      className="md:flex md:items-center md:gap-4"
+    >
       <div
         className={twMerge(
           "bg-blue grid size-[2.0625rem] place-items-center rounded-full border border-white font-bold transition duration-300",
@@ -70,6 +79,6 @@ export function FormStep({
           {stepDescription}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
