@@ -57,9 +57,8 @@ export function FormStep({
     <motion.div
       key={`${stepNum}_${isActive ? "active" : "inactive"}`}
       initial={{ scale: 1 }}
-      animate={isActive && { scale: [1, 1.1, 1] }}
-      // transition={{ duration: 0.3 }}
-      transition={{ type: "tween" }}
+      animate={isActive && { scale: [1, 1.05, 1], y: [0, -5, 0] }}
+      transition={{ type: "keyframes", duration: 0.2 }}
       className="md:flex md:items-center md:gap-4"
     >
       <div
